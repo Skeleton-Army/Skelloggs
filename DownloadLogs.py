@@ -14,21 +14,21 @@ def PrintHelp():
 
 
 def ParseAurguments():
-    global RobotIP 
-    global RobotPort
+    global DeviceIP 
+    global DevicePort
     global Local
     global Remote
-    RobotIP = ""
-    RobotPort = 5555
+    DeviceIP = ""
+    DevicePort = 5555
     Local = ""
     Remote = ""
     try:
         for i in range(1, len(sys.argv)):
             match sys.argv[i]:
                 case "-ip":
-                    RobotIP = sys.argv[1+i]
+                    DeviceIP = sys.argv[1+i]
                 case "-port":
-                    RobotPort = int(sys.argv[1+i])
+                    DevicePort = int(sys.argv[1+i])
                 case "-local":
                     Local = sys.argv[1+i]
                 case "-remote":
@@ -47,11 +47,11 @@ def ParseAurguments():
         PrintHelp()
     else:
         if sys.argv[1] != "-h" or "-help":
-            if RobotIP == "" or Local == "" or Remote == "":
+            if DeviceIP == "" or Local == "" or Remote == "":
                 print("Not all required arguments have been passed!\nExiting..")
                 sys.exit(1)
                 if os.path.exists(Local) and os.path.isdir(Local):
                     print(Local + " Doenst exist or isnt a directory!\nExiting...")
                     sys.exit(2)
 ParseAurguments()
-print("IP: " + RobotIP + " Port: " + str(RobotPort) + " Local: " + Local + " Remote: " + Remote)
+print("IP: " + DeviceIP + " Port: " + str(DevicePort) + " Local: " + Local + " Remote: " + Remote)
